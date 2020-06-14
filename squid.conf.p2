@@ -22,14 +22,13 @@ tls_outgoing_options capath=/etc/ssl/certs \
     options={{TLS_OPTIONS|default:"NO_SSLv3,NO_TLSv1"}} \
     cipher=ALL:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
 
-# http_port {{HTTP_PORT}} {% if MITM_PROXY|default:"" == "yes" %} intercept
-http_port {{HTTPS_PORT}} {% if MITM_PROXY|default:"" == "yes" %} intercept \
+# http_port {{HTTP_PORT}} intercept
+http_port {{HTTPS_PORT}} intercept \
     ssl-bump \
     generate-host-certificates=on \
     dynamic_cert_mem_cache_size=8MB \
     tls-cert=/etc/squid4/ssl_cert/mitm.crt \
     tls-key=/etc/squid4/ssl_cert/mitm.pem
-{% endif %}
 
 {% if MITM_PROXY|default:"" == "yes" %}
 ssl_bump server-first all
