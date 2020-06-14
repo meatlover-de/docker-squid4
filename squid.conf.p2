@@ -27,8 +27,8 @@ https_port {{HTTPS_PORT}} {% if MITM_PROXY|default:"" == "yes" %} intercept \
     ssl-bump \
     generate-host-certificates=on \
     dynamic_cert_mem_cache_size=8MB \
-    cert=/etc/squid4/ssl_cert/mitm.crt \
-    key=/etc/squid4/ssl_cert/mitm.pem
+    tls-cert=/etc/squid4/ssl_cert/mitm.crt \
+    tls-key=/etc/squid4/ssl_cert/mitm.pem
 {% endif %}
 
 {% if MITM_PROXY|default:"" == "yes" %}
