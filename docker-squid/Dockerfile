@@ -1,6 +1,6 @@
 ARG DOCKER_PREFIX=
 
-FROM ${DOCKER_PREFIX}ubuntu:artful
+FROM ${DOCKER_PREFIX}ubuntu:focal
 
 ARG TRUST_CERT=
 
@@ -19,7 +19,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get build-dep -y squid && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y wget tar xz-utils libssl-dev
 
-ARG SQUID_VERSION=4.0.21
+ARG SQUID_VERSION=4.12
 
 # TODO: verify the squid download with the signing key
 RUN mkdir /src \
@@ -74,7 +74,7 @@ RUN cd /src/squid && \
 
 # Download p2cli dependency
 RUN wget -O /usr/local/bin/p2 \
-    https://github.com/wrouesnel/p2cli/releases/download/r1/p2 && \
+    https://github.com/wrouesnel/p2cli/releases/download/r1/p2 \
     chmod +x /usr/local/bin/p2
 
 # Clone and build proxychains-ng for SSL upstream proxying
