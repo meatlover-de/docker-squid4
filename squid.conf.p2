@@ -22,14 +22,8 @@ tls_outgoing_options capath=/etc/ssl/certs \
     options={{TLS_OPTIONS|default:"NO_SSLv3,NO_TLSv1"}} \
     cipher=ALL:!RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS
 
-http_port {{HTTP_PORT}} intercept \
-    ssl-bump \
-    generate-host-certificates=on \
-    dynamic_cert_mem_cache_size=8MB \
-    cert=/etc/squid4/ssl_cert/mitm.crt \
-    key=/etc/squid4/ssl_cert/mitm.pem
-https_port {{HTTPS_PORT}} intercept \
-    ssl-bump \
+http_port {{HTTP_PORT}} 
+https_port {{HTTPS_PORT}} ssl-bump \
     generate-host-certificates=on \
     dynamic_cert_mem_cache_size=8MB \
     cert=/etc/squid4/ssl_cert/mitm.crt \
