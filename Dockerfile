@@ -100,6 +100,7 @@ COPY squid.bsh /squid.bsh
 
 # Configuration environment
 ENV HTTP_PORT=3128 \
+    HTTPS_PORT=3129 \
     ICP_PORT= \
     HTCP_PORT= \
     MITM_PROXY= \
@@ -116,6 +117,6 @@ ENV HTTP_PORT=3128 \
     DNS_OVER_HTTPS_PREFIX_SERVER= \
     DNS_OVER_HTTPS_SUFFIX_SERVER=
 
-EXPOSE 3128
+EXPOSE 3128 3129
 
 ENTRYPOINT [ "/squid.bsh" ]
