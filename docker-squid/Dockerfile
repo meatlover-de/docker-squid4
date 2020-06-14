@@ -74,7 +74,7 @@ RUN cd /src/squid && \
 
 # Download p2cli dependency
 RUN wget -O /usr/local/bin/p2 \
-    https://github.com/wrouesnel/p2cli/releases/download/r1/p2 \
+    https://github.com/wrouesnel/p2cli/releases/download/r1/p2 && \
     chmod +x /usr/local/bin/p2
 
 # Clone and build proxychains-ng for SSL upstream proxying
