@@ -14,6 +14,8 @@ variables:
 
  * `HTTP_PORT`
     Default: `3128`
+ * `HTTPS_PORT`
+    Default: `3129`
  * `ICP_PORT`
     If set, enables ICP on the given port for all users.
  * `HTCP_PORT`
@@ -130,11 +132,13 @@ you've generated a suitable CA certificate and are intending to use the proxy
 as a local MITM on your machine:
 ```
 sudo mkdir -p /srv/squid/cache
-docker run -it -p 3128:127.0.0.1:3128 --rm \
+docker run -it -p 0.0.0.0:3128:3128/tcp \
+    -p 0.0.0.0:3129:3129/tcp \ 
+    --rm \
     -v /srv/squid/cache:/var/cache/squid4 \
     -v /etc/ssl/certs:/etc/ssl/certs:ro \ 
     -v /etc/ssl/private/local_mitm.pem:/local-mitm.pem:ro \
-    -v /etc/ssl/certs/local_mitm.pem:/local-mitm.crt:ro \
+    -v /etc/ssl/certs/local_mitm.crt:/local-mitm.crt:ro \
     -e MITM_CERT=/local-mitm.crt \
     -e MITM_KEY=/local-mitm.pem \
     -e MITM_PROXY=yes \
